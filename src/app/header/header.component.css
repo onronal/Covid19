@@ -1,0 +1,12 @@
+nav{
+    top:0;
+    position: sticky;
+    z-index: 500;
+    background-color: #000 !important;
+}
+nav a{
+    color: #fff !important;
+}
+nav button{
+    background-color: #f1f1f1;
+}

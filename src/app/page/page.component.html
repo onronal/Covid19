@@ -1,0 +1,78 @@
+<div class="py-4 container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <img
+        src="https://www.countryflags.io/{{ id }}/shiny/64.png"
+        alt="{{ country.nativeName }}"
+      /><br />
+      <h1>{{ country.nativeName }} | {{ country.name }}</h1>
+      <b>Başkent : </b>{{ country.capital }} | <b>Nüfus : </b
+      >{{ country.population | number }}<br />
+      <i>*RestCountries Verilerine Göre</i>
+    </div>
+  </div>
+  <div class="row">
+    <div class="py-5 col-12">
+      <b>Komşular : </b>
+      <span *ngFor="let komsu of borderList"
+        ><a routerLink="../{{ komsu.alpha2Code }}">{{ komsu.name }} </a></span
+      >
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <table class="table table-responsive-md table-striped">
+        <thead>
+          <tr>
+            <th scope="col" colspan="2">Bugünkü Veriler</th>
+            <th scope="col" colspan="2">
+              Yeni Vaka Sayısı :
+              {{ post[0].Confirmed - post[1].Confirmed | number }}
+            </th>
+            <th scope="col" colspan="2">
+              Ölüm Sayısı : {{ post[0].Deaths - post[1].Deaths | number }}
+            </th>
+            <th scope="col" colspan="2">
+              İyileşme Sayısı :
+              {{ post[0].Recovered - post[1].Recovered | number }}
+            </th>
+          </tr>
+          <tr>
+            <th scope="col" colspan="8"></th>
+          </tr>
+          <tr>
+            <th scope="col">Tarih</th>
+            <th scope="col">Vaka</th>
+            <th scope="col">Vaka Nüfus Oranı</th>
+            <th scope="col">İyileşme</th>
+            <th scope="col">Ölüm</th>
+            <th scope="col">Aktif</th>
+            <th scope="col">Ölüm Vaka Oranı</th>
+            <th scope="col">İyileşme Vaka Oranı</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of post">
+            <ng-container>
+              <th scope="row">{{ item.Date | date: "dd/MM/yyyy" }}</th>
+              <td>{{ item.Confirmed | number }}</td>
+              <td>
+                % {{ (item.Confirmed / country.population) * 100 | number: "1.2-2" }}
+              </td>
+              <td>{{ item.Recovered | number }}</td>
+              <td>{{ item.Deaths | number }}</td>
+              <td>{{ item.Active | number }}</td>
+              <td>
+                % {{ (item.Deaths / item.Confirmed) * 100 | number: "1.2-2" }}
+              </td>
+              <td>
+                %
+                {{ (item.Recovered / item.Confirmed) * 100 | number: "1.2-2" }}
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<!-- Team -->
+<section id="team" class="pb-5">
+  <div class="container">
+    <div class="row">
+      <!-- Team member -->
+      <div
+        class="col-xs-12 col-sm-6 py-3 col-md-3"
+        *ngFor="let ulke of posts"
+      >
+        <div class="image-flip">
+          <div class="mainflip flip-0">
+            <div class="card">
+              <div class="card-body text-center">
+                <img
+                  src="https://www.countryflags.io/{{
+                    ulke.alpha2Code
+                  }}/shiny/64.png"
+                  alt="{{ ulke.name }}"
+                />
+                <h4 class="card-title">
+                  {{ ulke.alpha3Code }}
+                </h4>
+                <a
+                  routerLink="country/{{ ulke.alpha2Code }}"
+                  class="btn btn-primary btn-sm"
+                  >Verileri Gör</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ./Team member -->
+    </div>
+  </div>
+</section>
+<!-- Team -->
